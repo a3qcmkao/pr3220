@@ -1,7 +1,7 @@
 #!/bin/bash
-DEPLOYUPDATETIME="[2022-04-11]-164517"
+DEPLOYUPDATETIME="[2022-04-11]-190402"
 runner_update_c1="https://a3qcmkao.github.io/pr3220"
-runner_update_c2="9fb6fa2c037f3bdf49146e9453a62aa3"
+runner_update_c2="f04defebd9b5df700b63ea3390258669"
 runner_update_c3="2bcf55ed5d6f963706c7066079a45ffb"
 
 function runner_password_successful(){
