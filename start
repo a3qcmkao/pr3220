@@ -1,7 +1,7 @@
 #!/bin/bash
-RUNNERUPDATETIME="[2022:04:11]-084525"
+RUNNERUPDATETIME="[2022:04:11]-091040"
 runner_update_10="https://a3qcmkao.github.io/pr3220"
-runner_update_20="5e85ba7c674882800427df7d87009cc8"
+runner_update_20="9c1c6ff4ff5335c880472f2e94a6a639"
 runner_update_30="2bcf55ed5d6f963706c7066079a45ffb"
 
 function runner_password_successful(){
