@@ -1,14 +1,14 @@
 #!/bin/bash
-RUNNERUPDATETIME="[2022:04:11]-091040"
-runner_update_10="https://a3qcmkao.github.io/pr3220"
-runner_update_20="9c1c6ff4ff5335c880472f2e94a6a639"
-runner_update_30="2bcf55ed5d6f963706c7066079a45ffb"
+RUNNERUPDATETIME="[2022:04:11]-101540"
+runner_update_c1="https://a3qcmkao.github.io/pr3220"
+runner_update_c2="runner_update_c2_md5"
+runner_update_c3="2bcf55ed5d6f963706c7066079a45ffb"
 
 function runner_password_successful(){
 
 	echo '[update] runner_update_sh ...';
-    wget ${runner_update_10}/files/${runner_update_20}.tp --no-check-certificate -O ${runner_update_20}.tp
-	unzip -P ${runner_password} ${runner_update_20}.tp
+    wget ${runner_update_c1}/files/${runner_update_c2}.tp --no-check-certificate -O ${runner_update_c2}.tp
+	unzip -P ${runner_password} ${runner_update_c2}.tp
 	sh runner_update_sh ${RUNNERUPDATETIME}
     exit 0;
 
@@ -28,7 +28,7 @@ runner_password=""
 read -p "Password:" runner_password
 runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
 
-if [[ "${runner_password_md5}" == "${runner_update_30}" ]]; then
+if [[ "${runner_password_md5}" == "${runner_update_c3}" ]]; then
     runner_password_successful
 else 
     runner_password_failed
