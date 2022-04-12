@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-12]-212750"
+DEPLOYUPDATETIME="[2022-04-12]-221312"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
-runner_install_c1="970b1988bfe2ba656a96e3f3659572ff"
-runner_install_c2="5d7fc18a6e8b60373276f5dee3b0df1b"
+runner_install_c1="72c15d6e22fafbf3cdeb42fa7d8dfff5"
+runner_install_c2="0eaa45cbe13d51202012dbe713cb1f63"
 runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
 #Configure runner_deploy
@@ -22,7 +22,7 @@ RUNNERDEPLOYCON9=$9
 function password_successful(){
 	echo "[Runner]: runner_install_sh ..."
     wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
-	unzip -P ${runner_password} ${runner_install_c1}.tp
+	unzip -o -P ${runner_password} ${runner_install_c1}.tp
 	sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3}
     exit 0;
 }
