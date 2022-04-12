@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-12]-180033"
+DEPLOYUPDATETIME="[2022-04-12]-195546"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
-runner_install_c1="b7f32a49c41bacb179f02b82fd7380cb"
-runner_install_c2="ff7f84c501f0cf9d0fc49ebb7931c5bb"
+runner_install_c1="970b1988bfe2ba656a96e3f3659572ff"
+runner_install_c2="02952cfa41eedfe7118dba5645da6b72"
 runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
-#Configure runner_deploy
+#runner_workspaces
 function password_successful(){
 	echo "[Runner]: runner_install_sh ..."
     wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
