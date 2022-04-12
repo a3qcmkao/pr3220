@@ -1,21 +1,23 @@
 #!/bin/bash
-DEPLOYUPDATETIME="[2022-04-12]-060324"
-runner_update_c1="https://a3qcmkao.github.io/pr3220"
-runner_update_c2="403e19eaef174e248b237bb18a36f5b1"
-runner_update_c3="2bcf55ed5d6f963706c7066079a45ffb"
 
-function runner_password_successful(){
+#Configure runner_INI
+DEPLOYUPDATETIME="[2022-04-12]-165243"
+runner_install_c0="runner_install_c0_md5"
+runner_install_c1="runner_install_c1_md5"
+runner_install_c2="runner_install_c2_md5"
+runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
-	echo '[update] runner_update_sh ...';
-    wget ${runner_update_c1}/files/${runner_update_c2}.tp --no-check-certificate -O ${runner_update_c2}.tp
-	unzip -P ${runner_password} ${runner_update_c2}.tp
-	sh runner_update_sh runner_main
+#Configure runner_deploy
+function password_successful(){
+	echo "[Runner]: runner_install_sh ..."
+    wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
+	unzip -P ${runner_password} ${runner_install_c1}.tp
+	sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3}
     exit 0;
 }
 
-function runner_password_failed(){
-
-	echo '[update] error ...';
+function password_failed(){
+    echo "[Runner]: password_failed ..."
 	sleep 5
 	sh start
 	exit 0;
@@ -27,8 +29,8 @@ runner_password=""
 read -p "Password:" runner_password
 runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
 
-if [[ "${runner_password_md5}" == "${runner_update_c3}" ]]; then
-    runner_password_successful
+if [[ "${runner_password_md5}" == "${runner_install_c0_md5}" ]]; then
+    password_successful
 else 
-    runner_password_failed
+    password_failed
 fi
