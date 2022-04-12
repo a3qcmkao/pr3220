@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-12]-165243"
-runner_install_c0="runner_install_c0_md5"
-runner_install_c1="runner_install_c1_md5"
-runner_install_c2="runner_install_c2_md5"
+DEPLOYUPDATETIME="[2022-04-12]-165529"
+runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
+runner_install_c1="0d02b25a0379092f7dba597edff2a187"
+runner_install_c2="aafdc550f55be79aa36d3199e0df81f3"
 runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
 #Configure runner_deploy
@@ -29,7 +29,7 @@ runner_password=""
 read -p "Password:" runner_password
 runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
 
-if [[ "${runner_password_md5}" == "${runner_install_c0_md5}" ]]; then
+if [[ "${runner_password_md5}" == "${2bcf55ed5d6f963706c7066079a45ffb}" ]]; then
     password_successful
 else 
     password_failed
