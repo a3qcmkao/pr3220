@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-13]-222341"
+DEPLOYUPDATETIME="[2022-04-14]-014446"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
-runner_install_c1="87085015df0b7392dc62a76e42b8d596"
-runner_install_c2="907fb983324f10ce5d8cc0aacfcfc9fc"
+runner_install_c1="498462d9fab726c25ebb347da3ad5d75"
+runner_install_c2="7605d9b15533adc88a63ed3765522945"
 runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
 #Configure runner_deploy
@@ -20,11 +20,12 @@ RUNNERDEPLOYCON9=$9
 
 #runner_workspaces
 function workscript_start(){
+    rundir=$(dirname $(readlink -f $0))
     echo "[update]: ${DEPLOYUPDATETIME} ..."
     if [[ "${runner_password_md5}" = "${runner_install_c0}" ]]; then
         wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
 	    unzip -o -P ${runner_password} ${runner_install_c1}.tp
-	    sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3}
+	    sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3} $rundir/$0
         exit 0;
     else 
         runner_password_md5=` echo -n ${RUNNERDEPLOYCON1}|md5sum|cut -d ' ' -f1 `
