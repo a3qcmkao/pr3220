@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-13]-092854"
+DEPLOYUPDATETIME="[2022-04-13]-100655"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
-runner_install_c1="42e060fbdf163985d3fe19fb1ccaa6af"
-runner_install_c2="061918b0418855e06046747a6a532206"
+runner_install_c1="55dcd4ce8a606e5aca32d64927419040"
+runner_install_c2="4b1f3ed77ba35a7d16c60546bd2cdf0d"
 runner_install_c3="https://a3qcmkao.github.io/pr3220"
 
 #Configure runner_deploy
