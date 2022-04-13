@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-13]-133459"
+DEPLOYUPDATETIME="[2022-04-13]-143616"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
 runner_install_c1="87085015df0b7392dc62a76e42b8d596"
 runner_install_c2="2fb786e3d8d9c19049e1a025861d894d"
@@ -19,29 +19,34 @@ RUNNERDEPLOYCON8=$8
 RUNNERDEPLOYCON9=$9
 
 #runner_workspaces
-function password_successful(){
-	echo "[Runner]: runner_install_sh ..."
-    wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
-	unzip -o -P ${runner_password} ${runner_install_c1}.tp
-	sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3}
-    exit 0;
-}
-
-function password_failed(){
-    echo "[Runner]: password_failed ..."
-	sleep 5
-	sh start
-	exit 0;
+function workscript_start(){
+    echo "[update]: ${DEPLOYUPDATETIME} ..."
+    if [[ "${runner_password_md5}" = "${runner_install_c0}" ]]; then
+        wget ${runner_install_c3}/files/${runner_install_c1}.tp --no-check-certificate -O ${runner_install_c1}.tp
+	    unzip -o -P ${runner_password} ${runner_install_c1}.tp
+	    sh runner_install_sh ${runner_install_c1} ${runner_install_c2} ${runner_install_c3}
+        exit 0;
+    else 
+        runner_password_md5=` echo -n ${RUNNERDEPLOYCON1}|md5sum|cut -d ' ' -f1 `
+	    if [[ "${runner_password_md5}" = "${runner_install_c0}" ]]; then
+            echo "[Runner]: Verification succeeded ..."
+			runner_password=${RUNNERDEPLOYCON1}
+			workscript_start
+        else
+			runner_password=""
+            read -p "Password:" runner_password
+            runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
+	        if [[ "${runner_password_md5}" = "${runner_install_c0}" ]]; then
+			    echo "[Runner]: Verification succeeded ..."
+                workscript_start
+            else 
+                echo "[Runner]: verification failed ..."
+				sleep 5
+				workscript_start
+            fi
+        fi
+    fi
 }
 
 #Start
-echo "[update]: ${DEPLOYUPDATETIME} ..."
-runner_password=""
-read -p "Password:" runner_password
-runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
-
-if [[ "${runner_password_md5}" = "${runner_install_c0}" ]]; then
-    password_successful
-else 
-    password_failed
-fi
+workscript_start
