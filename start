@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Configure runner_INI
-DEPLOYUPDATETIME="[2022-04-13]-103317"
+DEPLOYUPDATETIME="[2022-04-13]-105930"
 runner_install_c0="2bcf55ed5d6f963706c7066079a45ffb"
 runner_install_c1="55dcd4ce8a606e5aca32d64927419040"
 runner_install_c2="dec043aee8473d727ff1d1a74bcb6bdc"
